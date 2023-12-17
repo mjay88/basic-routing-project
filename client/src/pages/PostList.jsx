@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 import { getPosts } from "../api/posts";
 
@@ -28,8 +27,9 @@ function PostList() {
 		</>
 	);
 }
-
+//loader replaces the useEffect fetch call
 function loader({ request: { signal } }) {
+	//signal replaces/the same as abort controller, react-router-dom loader is creating the new AbortController behind the scenes
 	return getPosts({ signal });
 }
 

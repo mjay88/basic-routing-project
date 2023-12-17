@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Link, useLoaderData } from "react-router-dom";
 import { getUsers } from "../api/users";
 
@@ -19,7 +18,7 @@ function UserList() {
 								<div>{user.email}</div>
 							</div>
 							<div className="card-footer">
-								<Link className="btn" to={`/users/${user.id}`}>
+								<Link className="btn" to={user.id.toString()}>
 									View
 								</Link>
 							</div>
