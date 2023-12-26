@@ -1,7 +1,17 @@
 import React from "react";
-import { Link, Outlet, ScrollRestoration } from "react-router-dom";
+import {
+	Link,
+	Outlet,
+	ScrollRestoration,
+	useNavigation,
+} from "react-router-dom";
 
 export function RootLayout() {
+	//useNavigation gives us information on our state
+	const { state } = useNavigation();
+
+	const isLoading = state === "loading";
+
 	return (
 		<>
 			<nav className="top-nav">
@@ -20,7 +30,8 @@ export function RootLayout() {
 			</nav>
 			{/* {You should only render one of these and it's recommended you render it in the root route of your app:} */}
 			<ScrollRestoration />
-			<div className="container">
+			{isLoading && <div className="loading-spinner" />}
+			<div className={`container ${isLoading ? "loading" : ""}`}>
 				<Outlet />
 			</div>
 		</>
